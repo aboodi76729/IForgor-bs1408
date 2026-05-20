@@ -43,8 +43,21 @@ jobs:
       - name: Build
         run: qpm s build
 
+      - name: Debug build output
+        run: |
+          echo "=== build/ contents ==="
+          ls -la build/ || echo "no build dir"
+          echo "=== root .so files ==="
+          find . -name "*.so" -not -path "*/extern/*" | head -20
+          echo "=== mod.json ==="
+          cat mod.json
+
       - name: Create Qmod
-        run: qpm qmod zip
+        run: |
+          cp build/libiforgor.so . 2>/dev/null || true
+          ls *.so 2>/dev/null || echo "no .so in root"
+          qpm qmod zip
+          ls *.qmod 2>/dev/null || echo "no qmod created"
 
       - name: Get Library Name
         id: libname
