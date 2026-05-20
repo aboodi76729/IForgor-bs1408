@@ -54,22 +54,7 @@ jobs:
           cd qmod_out && zip -r ../${{ env.qmodName }}.qmod . && cd ..
           ls -la ${{ env.qmodName }}.qmod
 
-      - name: Get Library Name
-        id: libname
-        run: |
-          cd ./build/
-          pattern="lib${module_id}*.so"
-          files=( $pattern )
-          echo "NAME=${files[0]}" >> $GITHUB_OUTPUT
-
-      - name: Upload non-debug artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ steps.libname.outputs.NAME }}
-          path: ./build/${{ steps.libname.outputs.NAME }}
-          if-no-files-found: error
-
-      - name: Upload qmod artifact
+      - name: Upload qmod
         uses: actions/upload-artifact@v4
         with:
           name: ${{env.qmodName}}.qmod
