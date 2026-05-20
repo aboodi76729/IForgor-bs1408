@@ -43,40 +43,15 @@ jobs:
       - name: Build
         run: qpm s build
 
-      - name: Package qmod manually
+      - name: Package qmod
         run: |
-          echo "=== Locating built files ==="
-          find . -name "libiforgor.so" -not -path "*/debug/*" | head -5
-          find . -name "libbeatsaber-hook.so" | head -5
-
-          SO_FILE=$(find ./build -maxdepth 1 -name "libiforgor.so" | head -1)
-          BSH_FILE=$(find . -name "libbeatsaber-hook.so" -not -path "*/debug/*" | head -1)
-
-          echo "SO: $SO_FILE"
-          echo "BSH: $BSH_FILE"
-
-          mkdir -p qmod_staging
-          cp "$SO_FILE" qmod_staging/libiforgor.so
-
-          # Update mod.json with actual library file name
-          python3 -c "
-          import json
-          with open('mod.json') as f:
-              m = json.load(f)
-          print('libraryFiles:', m.get('libraryFiles'))
-          print('lateModFiles:', m.get('lateModFiles'))
-          "
-
-          if [ -n "$BSH_FILE" ]; then
-            cp "$BSH_FILE" qmod_staging/libbeatsaber-hook.so
-          fi
-
-          cp mod.json qmod_staging/
-
-          cd qmod_staging
-          zip -r ../${{ env.qmodName }}.qmod .
-          cd ..
-          echo "Created qmod:"
+          mkdir -p qmod_out
+          cp mod.json qmod_out/
+          find ./build -maxdepth 1 -name "*.so" -exec cp {} qmod_out/ \;
+          find ./extern/libs -maxdepth 1 -name "*.so" -exec cp {} qmod_out/ \; 2>/dev/null || true
+          echo "Files in qmod_out:"
+          ls -la qmod_out/
+          cd qmod_out && zip -r ../${{ env.qmodName }}.qmod . && cd ..
           ls -la ${{ env.qmodName }}.qmod
 
       - name: Get Library Name
