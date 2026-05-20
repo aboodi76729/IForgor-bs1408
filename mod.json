@@ -1,6 +1,6 @@
 {
   "_QPVersion": "0.1.1",
-  "name": "IForgor \ud83d\udc80",
+  "name": "IForgor 💀",
   "id": "iforgor",
   "modloader": "Scotland2",
   "author": "FutureMapper",
@@ -11,19 +11,14 @@
   "coverImage": "cover.png",
   "dependencies": [
     {
-      "version": "^0.17.0",
+      "version": "^0.18.2",
       "id": "custom-types",
-      "downloadIfMissing": "https://github.com/QuestPackageManager/Il2CppQuestTypePatching/releases/download/v0.17.10/CustomTypes.qmod"
+      "downloadIfMissing": "https://github.com/QuestPackageManager/Il2CppQuestTypePatching/releases/download/v0.18.5/CustomTypes.qmod"
     },
     {
-      "version": "^1.0.0",
+      "version": "^0.4.55",
       "id": "bsml",
-      "downloadIfMissing": "https://github.com/RedBrumbler/Quest-BSML/releases/download/v1.14.1/BSML.qmod"
-    },
-    {
-      "version": "^3.6.3",
-      "id": "paper",
-      "downloadIfMissing": "https://github.com/Fernthedev/paperlog/releases/download/v3.6.3/paperlog.qmod"
+      "downloadIfMissing": "https://github.com/bsq-ports/Quest-BSML/releases/download/v0.4.55/BSML.qmod"
     }
   ],
   "modFiles": [],
@@ -31,7 +26,7 @@
     "libiforgor.so"
   ],
   "libraryFiles": [
-    "libbeatsaber-hook_5_1_9.so"
+    "libbeatsaber-hook.so"
   ],
   "fileCopies": [],
   "copyExtensions": []
