@@ -1,0 +1,75 @@
+{
+  "version": "0.1.0",
+  "sharedDir": "shared",
+  "dependenciesDir": "extern",
+  "info": {
+    "name": "IForgor",
+    "id": "iforgor",
+    "version": "1.1.0",
+    "url": null,
+    "additionalData": {
+      "overrideSoName": "libiforgor.so",
+      "cmake": true
+    }
+  },
+  "workspace": {
+    "scripts": {
+      "build": [
+        "pwsh ./scripts/build.ps1"
+      ]
+    },
+    "qmodIncludeDirs": [
+      "./build",
+      "./extern/libs"
+    ],
+    "qmodOutput": "IForgor.qmod"
+  },
+  "dependencies": [
+    {
+      "id": "scotland2",
+      "versionRange": "*",
+      "additionalData": {
+        "includeQmod": false
+      }
+    },
+    {
+      "id": "beatsaber-hook",
+      "versionRange": "^5.1.9",
+      "additionalData": {
+        "extraFiles": [
+          "src/inline-hook"
+        ]
+      }
+    },
+    {
+      "id": "bs-cordl",
+      "versionRange": "^4008.0.0",
+      "additionalData": {}
+    },
+    {
+      "id": "sombrero",
+      "versionRange": "*",
+      "additionalData": {}
+    },
+    {
+      "id": "custom-types",
+      "versionRange": "^0.17.0",
+      "additionalData": {}
+    },
+    {
+      "id": "kaleb",
+      "versionRange": "^0.1.9",
+      "additionalData": {}
+    },
+    {
+      "id": "bsml",
+      "versionRange": "^1.14.1",
+      "additionalData": {}
+    },
+    {
+      "id": "paper",
+      "versionRange": "^3.6.3",
+      "additionalData": {}
+    }
+  ]
+}
