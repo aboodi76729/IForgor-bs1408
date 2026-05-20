@@ -24,25 +24,22 @@ jobs:
       - uses: seanmiddleditch/gha-setup-ninja@v4
 
       - name: Create ndkpath.txt
-        run: |
-          echo "$ANDROID_NDK_LATEST_HOME" > ${GITHUB_WORKSPACE}/ndkpath.txt
-          cat ${GITHUB_WORKSPACE}/ndkpath.txt
+        run: echo "$ANDROID_NDK_LATEST_HOME" > ${GITHUB_WORKSPACE}/ndkpath.txt
 
-      - name: QPM Rust Action
-        uses: Fernthedev/qpm-rust-action@main
-        with:
-          workflow_token: ${{secrets.GITHUB_TOKEN}}
-          restore: true
-          cache: true
-          qpm_qmod: ${{env.qmodName}}.qmod
+      - name: Install QPM
+        run: |
+          wget -q https://github.com/RedBrumbler/QuestPackageManager-Rust/releases/latest/download/qpm-rust-linux -O /usr/local/bin/qpm-rust
+          chmod +x /usr/local/bin/qpm-rust
+          qpm-rust --version
+
+      - name: QPM Restore
+        run: qpm-rust restore
 
       - name: QPM Collapse
         run: qpm-rust collapse
 
       - name: Build
-        run: |
-          cd ${GITHUB_WORKSPACE}
-          qpm-rust s build
+        run: qpm-rust s build
 
       - name: Create Qmod
         run: qpm-rust qmod zip
