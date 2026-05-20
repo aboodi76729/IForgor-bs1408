@@ -1,7 +1,5 @@
-
 #pragma once
-#include "beatsaber-hook/shared/utils/logging.hpp"
-#include "beatsaber-hook/shared/config/rapidjson-utils.hpp"
+#include "paper2_scotland2/shared/logger.hpp"
 
 namespace IForgor {
   static constexpr auto Logger = Paper::ConstLoggerContext("IForgor");
